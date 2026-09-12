@@ -318,11 +318,11 @@
 
         </div>
 
-        <br>
         <hr>
         <div class="container text-muted xsmall">
-            <span> <a href="https://home.cltl.labs.vu.nl/">Computational Linguistics and Text Mining Lab</a>, <a href="https://vu.nl/en">VU Amsterdam</a></span><br>
-            <span> Last modified: July 2026</span>
+            <span> <a href="https://home.cltl.labs.vu.nl/">Computational Linguistics and Text Mining Lab</a>,
+                <a href="https://vu.nl/en">VU Amsterdam</a></span><br>
+            <span> Last modified: September 2026</span>
         </div>
         <br>
     </main>
@@ -392,98 +392,7 @@
             }
         }
 
-        // // 2. Parse the raw text into an array of JavaScript objects
-        // function parseBibTeX(bibStr) {
-        //     const entries = [];
-        //     const rawEntries = bibStr.split(/^\s*@/m).filter(e => e.trim().length > 0);
-        //
-        //     rawEntries.forEach(raw => {
-        //         const firstCommaIdx = raw.indexOf(',');
-        //         if (firstCommaIdx === -1) return;
-        //
-        //         const body = raw.substring(firstCommaIdx + 1);
-        //         const entry = {};
-        //
-        //         // Match 'key = {value}' OR 'key = value'
-        //         const fieldRegex = /(\w+)\s*=\s*(?:\{([\s\S]*?)\}|([^,}\s][^,}]*))/g;
-        //         let match;
-        //         while ((match = fieldRegex.exec(body)) !== null) {
-        //             const key = match[1].toLowerCase();
-        //             let value = match[2] !== undefined ? match[2] : match[3];
-        //
-        //             // Collapse newlines/multiple spaces into a single space
-        //             value = value.replace(/\s+/g, ' ').trim();
-        //
-        //             // Remove protective BibTeX curly braces (e.g., {What} -> What)
-        //             if (key !== 'note') { // Keep braces in note just in case it breaks HTML attributes
-        //                 value = value.replace(/[{}]/g, '');
-        //             }
-        //
-        //             entry[key] = value;
-        //         }
-        //         entries.push(entry);
-        //     });
-        //
-        //     // Sort by year (newest first)
-        //     return entries.sort((a, b) => (b.year || 0) - (a.year || 0));
-        // }
-// 2. Parse the raw text into an array of JavaScript objects
-//         function parseBibTeX(bibStr) {
-//             const entries = [];
-//             const rawEntries = bibStr.split(/^\s*@/m).filter(e => e.trim().length > 0);
-//
-//             rawEntries.forEach(raw => {
-//                 const firstCommaIdx = raw.indexOf(',');
-//
-//                 // WARNING CHECK 1: Missing comma after the citation key
-//                 if (firstCommaIdx === -1) {
-//                     console.warn("⚠️ BibTeX Warning: Skipped an entry missing the first comma. Raw text snippet:", raw.substring(0, 50));
-//                     return;
-//                 }
-//
-//                 // Extract the citation key (e.g., "Morgado:2016") so we can reference it in errors
-//                 const citationKey = raw.substring(raw.indexOf('{') + 1, firstCommaIdx).trim();
-//
-//                 const body = raw.substring(firstCommaIdx + 1);
-//                 const entry = {};
-//
-//                 // Match 'key = {value}' OR 'key = value'
-//                 const fieldRegex = /(\w+)\s*=\s*(?:\{([\s\S]*?)\}|([^,}\s][^,}]*))/g;
-//                 let match;
-//                 let fieldsFound = 0;
-//
-//                 while ((match = fieldRegex.exec(body)) !== null) {
-//                     fieldsFound++;
-//                     const key = match[1].toLowerCase();
-//                     let value = match[2] !== undefined ? match[2] : match[3];
-//
-//                     // Collapse newlines/multiple spaces into a single space
-//                     value = value.replace(/\s+/g, ' ').trim();
-//
-//                     // Remove protective BibTeX curly braces
-//                     if (key !== 'note') {
-//                         value = value.replace(/[{}]/g, '');
-//                     }
-//
-//                     entry[key] = value;
-//                 }
-//
-//                 // WARNING CHECK 2: No fields were parsed successfully
-//                 if (fieldsFound === 0) {
-//                     console.warn(`⚠️ BibTeX Warning: Could not parse any fields for [${citationKey}]. Check your formatting/brackets.`);
-//                 }
-//                 // WARNING CHECK 3: Missing crucial fields
-//                 else if (!entry.title || !entry.author || !entry.year) {
-//                     console.warn(`⚠️ BibTeX Warning: [${citationKey}] is missing a title, author, or year.`, entry);
-//                 }
-//
-//                 entries.push(entry);
-//             });
-//
-//             // Sort by year (newest first)
-//             return entries.sort((a, b) => (b.year || 0) - (a.year || 0));
-//         }
-// 2. Parse the raw text into an array of JavaScript objects
+        // 2. Parse the raw text into an array of JavaScript objects
         function parseBibTeX(bibStr) {
             const entries = [];
             const rawEntries = bibStr.split(/^\s*@/m).filter(e => e.trim().length > 0);
