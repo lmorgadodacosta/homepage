@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="CLTL VU Amsterdam">
+        <link rel="icon" href="">
+
+        <title>LMC</title>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+        <link href="/static/sticky-footer-navbar.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+        <style>
+            span.nospace {
+                letter-spacing: -18px;
+            }
+            div.justify-text {
+                text-align: justify;
+                text-justify: inter-word;
+            }
+            .xsmall {
+                font-size: 0.60rem; /* 12px if base is 16px */
+            }
+            /* Custom styling to ensure footer behaves nicely if pages are short */
+            html, body {
+                height: 100%;
+            }
+            body {
+                display: flex;
+                flex-direction: column;
+            }
+            main {
+                flex: 1 0 auto;
+            }
+            footer {
+                flex-shrink: 0;
+            }
+        </style>
+    </head>
+    <body>
+
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#home" onclick="showSection('home')">Luis Morgado da Costa</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample04">
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#home" onclick="showSection('home')">About</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#updates" onclick="showSection('updates')">News & Updates</a>
+                </li>
+
+
+                <!-- Research Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown-research" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Research</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-research">
+                        <a class="dropdown-item" href="#research-themes" onclick="showSection('research-themes')">Core Themes</a>
+                        <a class="dropdown-item" href="#current-projects" onclick="showSection('current-projects')">Current Projects</a>
+                        <a class="dropdown-item" href="#past-projects" onclick="showSection('past-projects')">Past Projects</a>
+                    </div>
+                </li>
+
+                <!-- Teaching Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown-teaching" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Teaching & Mentorship</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-teaching">
+                        <a class="dropdown-item" href="#courses" onclick="showSection('courses')">Courses</a>
+                        <a class="dropdown-item" href="#supervision" onclick="showSection('supervision')">Student Supervision</a>
+                    </div>
+                </li>
+
+                <!-- Publications Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown-publications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Publications</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-publications">
+                        <a class="dropdown-item" href="#publications" onclick="showSection('publications')">Publications</a>
+                        <a class="dropdown-item" href="#talks" onclick="showSection('talks')">Invited Talks & Conference Presentations</a>
+                    </div>
+                </li>
+
+                <!-- Software & Resources Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown-resources" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-resources">
+                        <a class="dropdown-item" href="#datasets" onclick="showSection('datasets')">Datasets</a>
+                        <a class="dropdown-item" href="#software" onclick="showSection('software')">Software & Tools</a>
+                    </div>
+                </li>
+
+                <!-- Service & Community Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown-service" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Service & Community</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-service">
+                        <a class="dropdown-item" href="#memberships" onclick="showSection('memberships')">Academic Memberships</a>
+                        <a class="dropdown-item" href="#committees" onclick="showSection('committees')">Reviewing & Committees</a>
+                    </div>
+                </li>
+
+
+
+            </ul>
+        </div>
+    </nav>
+    </header>
+    <main role="main" class="container">
+        <br>
+
+        <div id="content-dynamic">
+
+            <section id="home" class="content-section justify-text">
+
+            <div>
+                <p><figure style="float:right;">
+                <img src="static/lmc.jpg" alt="EU flag" height="200" style="float:right;
+                border-radius: 50%;margin-left: 15px;">
+                </figure>
+                I'm currently an Assistant Professor in Computational Linguistics at <a href="https://vu.nl/nl">Vrije
+                Universiteit (VU) Amsterdam</a>, working with the <a href="http://www.cltl.nl/">Computational
+                Linguistics & Text Mining Lab</a>. I have an interdisciplinary background, a strong foundation in
+                multilingual Computational Linguistics and Natural Language Processing, and a wide range of research
+                interests.</p>
+
+                <p> Before joining VU Amsterdam, I held a <a href="https://ec.europa.eu/research/mariecurieactions/">
+                    Marie Skłodowska-Curie Individual Fellowship</a>, funded by the European Commission (Horizon 2020).
+                    I was hosted at the Asian Studies Department from <a href="https://www.upol.cz/en/">Palacký
+                        University Olomouc</a>, in the Czech Republic. This fellowship focused on improving the tasks
+                    of Parsing and Grammatical Error Detection (GED) for Mandarin Chinese using computational
+                    grammars (<a href="{{ url_for('msca_chill') }}">see more</a>).</p>
+
+                <p>I've completed my PhD from the <a href="https://www.ntu.edu.sg/hass/admissions/graduate-programmes/interdisciplinary-graduate-programme" target="_blank">
+                    Interdisciplinary Graduate Programme</a>, at <a href="http://www.ntu.edu.sg/Pages/home.aspx" target="_blank">
+                    Nanyang Technological University (NTU)</a>, in Singapore. My thesis was titled <i>Using Rich Models
+                    of Language in Grammatical Error Detection</i>, and looked at exploiting computational grammars to
+                    improve the task of GED for English and Mandarin Chinese. Towards this end, I've created a new kind
+                    of learner corpus (i.e. <i>Learner Treebanks</i>) where error labels are placed deep within the
+                    syntactic structure instead of on the sentence surface level.</p>
+
+                <p>Before starting my PhD, I was a Research Associate at the
+                    <a href="http://compling.hss.ntu.edu.sg" target="_blank">Computational Linguistics Lab</a> under
+                    the supervision of <a target="_blank" href="https://scholar.google.com/citations?user=y2WMWysAAAAJ&hl=en">
+                        Francis Bond</a>, also at NTU, Singapore. During this time worked on tasks such as Parsing,
+                    Word Sense Disambiguation and Sentiment Analysis. I've also acquired a lot of experience in building
+                    language resources (corpora, wordnets, treebanks, etc.). In particular, I become a main contributor
+                    of the <a  target="_blank" href="https://github.com/globalwordnet/OMW">Open Multilingual Wordnet</a>,
+                    a project pushing an open data agenda for language resources, in particular of wordnets.</p>
+
+                <p>I'm a member of <a href="http://moin.delph-in.net" target="_blank">DELPH-IN</a>, sharing the
+                    communal commitment of open-source development of NLP tools for high quality (linguistically
+                    motivated) syntactic and semantic parsing. And I'm also a member of the
+                    <a href="http://globalwordnet.org" target="_blank">Global Wordnet Association</a>, contributing to
+                    open-source research on computational lexical semantics.</p>
+
+                <p>My research interests include Educational Technology, Grammatical Error Detection, Computational
+                    Lexical Semantics, Syntactic and Semantic Parsing,  Digital Humanities, Chinese NLP as well as
+                    general Mandarin Chinese and Japanese Linguistics. In my research, I like to work towards modeling
+                    and intersecting diverse aspects of linguistic knowledge with different AI tasks. I work mainly with
+                    English and Mandarin Chinese, but I've also worked with other languages such as Japanese, Portuguese,
+                    Kristang, Cantonese, Coptic, Indonesian and Abui.</p>
+
+                <p>For more detail about my work, you can click <a href="{{ url_for('projs') }}#current">here</a> to
+                    see a list of some of my current and previous projects.</p>
+
+            </div>
+            You can find me in some of the usual places: &nbsp;&nbsp;<span class="text-muted">
+              <a href="https://www.linkedin.com/in/lu%C3%ADs-morgado-da-costa-52976794/"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>&nbsp;&nbsp;
+              <a href="https://twitter.com/lmorgadodacosta"> <i class="fa fa-twitter-square" ></i></a>&nbsp;&nbsp;
+              <a href="https://github.com/lmorgadodacosta"><i class="fa fa-github" aria-hidden="true"></i></a>&nbsp;&nbsp;
+              <a href="https://nanyang.academia.edu/LuisMorgadodaCosta/"><b>A</b></a>&nbsp;&nbsp;
+            </span>
+            <br><br>
+            </section>
+
+            <section id="updates" class="content-section justify-text">
+                <h3>News & Updates </h3>
+                <p>...</p>
+            </section>
+
+            <!--  ############################  -->
+            <!--  #         RESEARCH         #  -->
+            <!--  ############################  -->
+            <section id="research-themes" class="content-section justify-text">
+                <h3>Core Research Themes</h3>
+
+                <p class="mt-3">
+                    My research operates at the intersection of theoretical linguistics and modern artificial intelligence.
+                    Rather than viewing language modeling solely as an engineering challenge, I focus on integrating deep
+                    linguistic knowledge with computational methods to build systems that are interpretable, grounded,
+                    and human-centric.
+                </p>
+
+                <p>My work spans three interconnected themes:</p>
+
+                <ul class="list-unstyled mt-3">
+                    <li class="mb-4">
+                        <b>Hybrid & Grounded Language Modeling</b>: I explore the synthesis of theoretically-driven
+                        symbolic approaches (such as computational grammars and rich lexical semantics) with modern
+                        machine learning techniques. I am particularly interested in building small language models
+                        and understanding how their learning can be improved by grounding them in linguistic knowledge.
+                        By anchoring statistical models in explicit linguistic structures, I aim to develop NLP
+                        systems that are more robust and genuinely comprehend language.
+                    </li>
+
+                    <li class="mb-4">
+                        <b>Human-Centric AI in Education and Healthcare</b>: I apply my language modeling work to
+                        high-stakes domains—primarily Educational NLP (such as Intelligent Computer-Assisted Language
+                        Learning) and Medical NLP. A guiding principle of this
+                        applied research is keeping the human in control. I focus on designing "human-in-the-loop"
+                        systems that assist, empower, and provide transparent feedback to teachers, learners, and
+                        medical professionals, rather than replacing them with opaque black boxes.
+                    </li>
+
+                    <li class="mb-4">
+                        <b>Computational Linguistics & Language Documentation</b>: I leverage computational modeling
+                        to advance the science of linguistics itself. This includes using NLP to test formal linguistic
+                        hypotheses at scale, as well as applying machine learning to assist in the documentation and
+                        preservation of diverse languages. A major component of this work involves building open-source,
+                        high-quality language resources—such as wordnets and corpora—to support both technological
+                        development and linguistic research for low-resource languages.
+                    </li>
+                </ul>
+
+                <p class="mt-4">
+                    Recently, my research has expanded into the field of social and communicative robots, particularly
+                    working with the <a href="https://github.com/leolani" target="_blank">Leolani platform</a>. I am
+                    fascinated by the multimodal dimensions of human-robot interaction—especially how to effectively
+                    ground conversational speech, text, and visual signals to facilitate natural and meaningful communication.
+                    Aligning with my broader focus on human-centric AI, I am actively exploring how these communicative
+                    robots can be deployed as helpful, interactive assistants within both educational and healthcare settings.
+                </p>
+            </section>
+
+            <section id="current-projects" class="content-section justify-text">
+                <h3>Current Projects</h3>
+                <p>...</p>
+            </section>
+
+            <section id="past-projects" class="content-section justify-text">
+                <h3>Past Projects</h3>
+                <p>...</p>
+            </section>
+
+            <!--  ############################  -->
+            <!--  #         TEACHING         #  -->
+            <!--  ############################  -->
+            <section id="courses" class="content-section justify-text">
+                <h3>Courses</h3>
+                <p>...</p>
+            </section>
+
+            <section id="supervision" class="content-section justify-text">
+                <h3>Student Supervision</h3>
+                <p>...</p>
+            </section>
+
+
+            <!--  ############################  -->
+            <!--  #       PUBLICATIONS       #  -->
+            <!--  ############################  -->
+            <section id="publications" class="content-section justify-text">
+                <h3>Publications</h3>
+                <br>
+                <ul id="publications-list" class="list-unstyled mt-4">
+                    <li>Loading publications...</li>
+                </ul>
+            </section>
+
+            <section id="talks" class="content-section justify-text">
+                <h3>Invited Talks & Conference Presentations</h3>
+                <br>
+                <ul id="talks-list" class="list-unstyled mt-4">
+                    <li>Loading talks...</li>
+                </ul>
+            </section>
+
+            <!--  ############################  -->
+            <!--  #         RESOURCES        #  -->
+            <!--  ############################  -->
+            <section id="datasets" class="content-section justify-text">
+                <h3>Datasets</h3>
+                <p>...</p>
+            </section>
+
+            <section id="software" class="content-section justify-text">
+                <h3>Software & Tools</h3>
+                <p>...</p>
+            </section>
+
+            <!--  ############################  -->
+            <!--  #          SERVICE         #  -->
+            <!--  ############################  -->
+            <section id="memberships" class="content-section justify-text">
+                <h3>Academic Memberships</h3>
+                <p>...</p>
+            </section>
+
+            <section id="committees" class="content-section justify-text">
+                <h3>Reviewing & Committees</h3>
+                <p>...</p>
+            </section>
+
+
+        </div>
+
+        <br>
+        <hr>
+        <div class="container text-muted xsmall">
+            <span> <a href="https://home.cltl.labs.vu.nl/">Computational Linguistics and Text Mining Lab</a>, <a href="https://vu.nl/en">VU Amsterdam</a></span><br>
+            <span> Last modified: July 2026</span>
+        </div>
+        <br>
+    </main>
+
+
+    <script type="text/javascript">
+
+        function showSection(sectionId) {
+            // Hide all content sections by adding Bootstrap's 'd-none' utility class
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.add('d-none');
+            });
+
+            // Reveal the targeted section by removing 'd-none'
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.classList.remove('d-none');
+            }
+
+            // Optional: smooth scroll back up to the top of the content context
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Function to check the URL hash and show the correct section
+        function handleUrlHash() {
+            // Get the hash from the URL, removing the '#' symbol
+            const hash = window.location.hash.substring(1);
+
+            // Check if the hash matches a valid section ID
+            const targetSection = document.getElementById(hash);
+
+            if (hash && targetSection && targetSection.classList.contains('content-section')) {
+                showSection(hash);
+            } else {
+                // Fallback to the home section if there's no hash or an invalid hash
+                showSection('home');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', handleUrlHash);
+
+        window.addEventListener('hashchange', handleUrlHash);
+
+    </script>
+
+
+    <script type="text/javascript">
+// --- Generic BibTeX Parser and Renderer ---
+
+        // 1. Generic function to fetch and load a .bib file into a specific container
+        async function loadBibTeX(filename, containerId) {
+            const listContainer = document.getElementById(containerId);
+            try {
+                const response = await fetch(filename);
+                if (!response.ok) throw new Error(`Could not fetch ${filename}`);
+
+                const bibText = await response.text();
+                const entries = parseBibTeX(bibText);
+
+                renderEntries(entries, listContainer);
+            } catch (error) {
+                console.error(error);
+                if (listContainer) {
+                    listContainer.innerHTML = `<li class="text-danger">Failed to load ${filename}.</li>`;
+                }
+            }
+        }
+
+        // // 2. Parse the raw text into an array of JavaScript objects
+        // function parseBibTeX(bibStr) {
+        //     const entries = [];
+        //     const rawEntries = bibStr.split(/^\s*@/m).filter(e => e.trim().length > 0);
+        //
+        //     rawEntries.forEach(raw => {
+        //         const firstCommaIdx = raw.indexOf(',');
+        //         if (firstCommaIdx === -1) return;
+        //
+        //         const body = raw.substring(firstCommaIdx + 1);
+        //         const entry = {};
+        //
+        //         // Match 'key = {value}' OR 'key = value'
+        //         const fieldRegex = /(\w+)\s*=\s*(?:\{([\s\S]*?)\}|([^,}\s][^,}]*))/g;
+        //         let match;
+        //         while ((match = fieldRegex.exec(body)) !== null) {
+        //             const key = match[1].toLowerCase();
+        //             let value = match[2] !== undefined ? match[2] : match[3];
+        //
+        //             // Collapse newlines/multiple spaces into a single space
+        //             value = value.replace(/\s+/g, ' ').trim();
+        //
+        //             // Remove protective BibTeX curly braces (e.g., {What} -> What)
+        //             if (key !== 'note') { // Keep braces in note just in case it breaks HTML attributes
+        //                 value = value.replace(/[{}]/g, '');
+        //             }
+        //
+        //             entry[key] = value;
+        //         }
+        //         entries.push(entry);
+        //     });
+        //
+        //     // Sort by year (newest first)
+        //     return entries.sort((a, b) => (b.year || 0) - (a.year || 0));
+        // }
+// 2. Parse the raw text into an array of JavaScript objects
+//         function parseBibTeX(bibStr) {
+//             const entries = [];
+//             const rawEntries = bibStr.split(/^\s*@/m).filter(e => e.trim().length > 0);
+//
+//             rawEntries.forEach(raw => {
+//                 const firstCommaIdx = raw.indexOf(',');
+//
+//                 // WARNING CHECK 1: Missing comma after the citation key
+//                 if (firstCommaIdx === -1) {
+//                     console.warn("⚠️ BibTeX Warning: Skipped an entry missing the first comma. Raw text snippet:", raw.substring(0, 50));
+//                     return;
+//                 }
+//
+//                 // Extract the citation key (e.g., "Morgado:2016") so we can reference it in errors
+//                 const citationKey = raw.substring(raw.indexOf('{') + 1, firstCommaIdx).trim();
+//
+//                 const body = raw.substring(firstCommaIdx + 1);
+//                 const entry = {};
+//
+//                 // Match 'key = {value}' OR 'key = value'
+//                 const fieldRegex = /(\w+)\s*=\s*(?:\{([\s\S]*?)\}|([^,}\s][^,}]*))/g;
+//                 let match;
+//                 let fieldsFound = 0;
+//
+//                 while ((match = fieldRegex.exec(body)) !== null) {
+//                     fieldsFound++;
+//                     const key = match[1].toLowerCase();
+//                     let value = match[2] !== undefined ? match[2] : match[3];
+//
+//                     // Collapse newlines/multiple spaces into a single space
+//                     value = value.replace(/\s+/g, ' ').trim();
+//
+//                     // Remove protective BibTeX curly braces
+//                     if (key !== 'note') {
+//                         value = value.replace(/[{}]/g, '');
+//                     }
+//
+//                     entry[key] = value;
+//                 }
+//
+//                 // WARNING CHECK 2: No fields were parsed successfully
+//                 if (fieldsFound === 0) {
+//                     console.warn(`⚠️ BibTeX Warning: Could not parse any fields for [${citationKey}]. Check your formatting/brackets.`);
+//                 }
+//                 // WARNING CHECK 3: Missing crucial fields
+//                 else if (!entry.title || !entry.author || !entry.year) {
+//                     console.warn(`⚠️ BibTeX Warning: [${citationKey}] is missing a title, author, or year.`, entry);
+//                 }
+//
+//                 entries.push(entry);
+//             });
+//
+//             // Sort by year (newest first)
+//             return entries.sort((a, b) => (b.year || 0) - (a.year || 0));
+//         }
+// 2. Parse the raw text into an array of JavaScript objects
+        function parseBibTeX(bibStr) {
+            const entries = [];
+            const rawEntries = bibStr.split(/^\s*@/m).filter(e => e.trim().length > 0);
+
+            rawEntries.forEach(raw => {
+                const firstCommaIdx = raw.indexOf(',');
+
+                if (firstCommaIdx === -1) {
+                    console.warn("⚠️ BibTeX Warning: Skipped an entry missing the first comma. Raw text snippet:", raw.substring(0, 50));
+                    return;
+                }
+
+                const citationKey = raw.substring(raw.indexOf('{') + 1, firstCommaIdx).trim();
+                const body = raw.substring(firstCommaIdx + 1);
+                const entry = {};
+
+                // UPDATED REGEX: Matches {value} OR "value" OR bare_value
+                const fieldRegex = /(\w+)\s*=\s*(?:\{([\s\S]*?)\}|"([\s\S]*?)"|([^,}\s][^,}]*))/g;
+                let match;
+                let fieldsFound = 0;
+
+                while ((match = fieldRegex.exec(body)) !== null) {
+                    fieldsFound++;
+                    const key = match[1].toLowerCase();
+
+                    // Determine which capture group found the match (braces, quotes, or bare)
+                    let value = match[2] !== undefined ? match[2] :
+                               (match[3] !== undefined ? match[3] : match[4]);
+
+                    if (value) {
+                        // Collapse newlines/multiple spaces into a single space
+                        value = value.replace(/\s+/g, ' ').trim();
+
+                        // Remove protective BibTeX curly braces
+                        if (key !== 'note') {
+                            value = value.replace(/[{}]/g, '');
+                        }
+
+                        entry[key] = value;
+                    }
+                }
+
+                if (fieldsFound === 0) {
+                    console.warn(`⚠️ BibTeX Warning: Could not parse any fields for [${citationKey}].`);
+                } else if (!entry.title || !entry.author || !entry.year) {
+                    console.warn(`⚠️ BibTeX Warning: [${citationKey}] is missing a title, author, or year.`, entry);
+                }
+
+                entries.push(entry);
+            });
+
+            // ROBUST SORTING: Safely convert to integers and sort newest to oldest
+            return entries.sort((a, b) => {
+                const yearA = parseInt(a.year, 10) || 0;
+                const yearB = parseInt(b.year, 10) || 0;
+                return yearB - yearA;
+            });
+        }
+
+        // 3. Generate HTML for each entry adhering to the academic citation format
+        function renderEntries(entries, container) {
+            container.innerHTML = ''; // Clear the "Loading..." text
+
+            entries.forEach(entry => {
+                const li = document.createElement('li');
+                li.className = 'mb-3'; // Spacing between citations
+
+                // Start building the citation string
+                let citation = '';
+
+                // Authors and Year
+                if (entry.author) citation += `<b>${entry.author}</b> `;
+                if (entry.year) citation += `(${entry.year}). `;
+
+                // Title
+                if (entry.title) {
+                    citation += `${entry.title}`;
+                    // Ensure title ends with a period
+                    if (!citation.endsWith('.')) citation += '.';
+                    citation += ` `;
+                }
+
+                // Booktitle
+                if (entry.booktitle) {
+                    citation += `<em>${entry.booktitle}</em>. `;
+                }
+
+                // Append optional details: address, publisher, pages
+                const details = [];
+                if (entry.address) details.push(entry.address);
+                if (entry.publisher) details.push(entry.publisher);
+                if (entry.pages) details.push(entry.pages);
+
+                if (details.length > 0) {
+                    citation += details.join('. ') + '. ';
+                }
+
+                // Notes (e.g., HTML dataset links)
+                if (entry.note) {
+                    citation += ` ${entry.note} `;
+                }
+
+                // URL badge/link
+                if (entry.url) {
+                    citation += ` <a href="${entry.url}" target="_blank" class="badge badge-dark">PDF</a>`;
+                }
+
+                li.innerHTML = citation;
+                container.appendChild(li);
+            });
+        }
+
+        // Trigger the loading function for both files when the DOM is ready
+        window.addEventListener('DOMContentLoaded', () => {
+            loadBibTeX('static/publications.bib', 'publications-list');
+            loadBibTeX('static/confs-talks.bib', 'talks-list');
+        });
+    </script>
+
+
+</body>
+</html>
